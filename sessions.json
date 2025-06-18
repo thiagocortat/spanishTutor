@@ -1,0 +1,14 @@
+{
+  "+5511999999999": {
+    "messages": [
+      {
+        "user": "Hola, ¿cómo estás?",
+        "assistant": "😊 ¡Hola.  Estoy bien, gracias.  ¿Y tú, cómo estás.",
+        "timestamp": "2025-06-18T01:01:40.677Z",
+        "level": "básico"
+      }
+    ],
+    "lastActivity": "2025-06-18T01:01:40.677Z",
+    "createdAt": "2025-06-18T01:01:40.677Z"
+  }
+}
