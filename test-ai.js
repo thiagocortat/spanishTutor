@@ -35,13 +35,13 @@ loadEnv();
 const SpanishTutor = require('./spanishTutor');
 
 // Verificar se a chave da API foi fornecida
-const apiKey = process.env.OPENROUTER_API_KEY;
+const apiKey = process.env.GROQ_API_KEY;
 if (!apiKey || apiKey === 'sua-chave-aqui') {
-  console.error('❌ Erro: Configure a variável OPENROUTER_API_KEY');
+  console.error('❌ Erro: Configure a variável GROQ_API_KEY');
   console.log('\n📝 Como configurar:');
-  console.log('1. Acesse https://openrouter.ai e obtenha sua chave');
-  console.log('2. Execute: export OPENROUTER_API_KEY="sua-chave-aqui"');
-  console.log('3. Ou crie um arquivo .env com: OPENROUTER_API_KEY=sua-chave-aqui');
+  console.log('1. Acesse https://console.groq.com e obtenha sua chave');
+  console.log('2. Execute: export GROQ_API_KEY="sua-chave-aqui"');
+  console.log('3. Ou crie um arquivo .env com: GROQ_API_KEY=sua-chave-aqui');
   process.exit(1);
 }
 
@@ -96,11 +96,11 @@ async function testAI() {
     if (error.message.includes('API Error: 401')) {
       console.log('\n🔑 Problema de autenticação:');
       console.log('- Verifique se sua chave da API está correta');
-      console.log('- Acesse https://openrouter.ai para verificar sua conta');
+      console.log('- Acesse https://console.groq.com para verificar sua conta');
     } else if (error.message.includes('API Error: 429')) {
       console.log('\n⏰ Limite de requisições atingido:');
       console.log('- Aguarde alguns minutos antes de tentar novamente');
-      console.log('- Considere fazer upgrade da sua conta OpenRouter');
+      console.log('- Considere fazer upgrade da sua conta Groq');
     } else if (error.message.includes('ENOTFOUND') || error.message.includes('ECONNREFUSED')) {
       console.log('\n🌐 Problema de conexão:');
       console.log('- Verifique sua conexão com a internet');

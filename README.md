@@ -1,10 +1,10 @@
 # 🇪🇸 Spanish Tutor WhatsApp Bot
 
-Bot inteligente de WhatsApp que funciona como professor de espanhol, usando IA (GPT-3.5-turbo via OpenRouter) para gerar respostas didáticas personalizadas.
+Bot inteligente de WhatsApp que funciona como professor de espanhol, usando IA (Llama3 via Groq) para gerar respostas didáticas personalizadas.
 
 ## ✨ Funcionalidades
 
-- 🤖 **IA Integrada**: Usa GPT-3.5-turbo via OpenRouter para respostas inteligentes
+- 🤖 **IA Integrada**: Usa Llama3 via Groq para respostas inteligentes
 - 📚 **Professor Virtual**: Atua como professor de espanhol paciente e instrutivo
 - 🎯 **Adaptativo**: Detecta o nível do usuário e adapta as respostas
 - 💬 **Histórico**: Mantém contexto da conversa para aprendizado progressivo
@@ -16,7 +16,7 @@ Bot inteligente de WhatsApp que funciona como professor de espanhol, usando IA (
 ### Desenvolvimento Local
 1. **Clone o repositório**
 2. **Instale as dependências**: `npm install`
-3. **Configure sua chave da API**: Edite o arquivo `.env` e adicione sua chave do OpenRouter
+3. **Configure sua chave da API**: Edite o arquivo `.env` e adicione sua chave do Groq
 4. **Execute o programa**: `npm start`
 5. **Teste**: `npm run test-ai "Hola, ¿cómo estás?"`
 
@@ -33,8 +33,9 @@ Bot inteligente de WhatsApp que funciona como professor de espanhol, usando IA (
 npm install
 ```
 
-### 2. Configurar API OpenRouter
-1. Acesse [OpenRouter.ai](https://openrouter.ai) e crie uma conta gratuita
+### 2. Configurar API Groq
+
+1. Acesse [Console Groq](https://console.groq.com) e crie uma conta gratuita
 2. Obtenha sua chave da API
 3. Copie o arquivo `.env.example` para `.env`:
 ```bash
@@ -42,7 +43,7 @@ cp .env.example .env
 ```
 4. Edite o arquivo `.env` e adicione sua chave:
 ```
-OPENROUTER_API_KEY=sk-or-v1-sua-chave-aqui
+GROQ_API_KEY=sua-chave-groq-aqui
 ```
 
 ### 3. Executar o servidor
@@ -207,13 +208,13 @@ O código está preparado para:
 
 ## 💰 Custos
 
-- **OpenRouter**: Modelo GPT-3.5-turbo tem custo muito baixo
+- **Groq**: Modelo Llama3 é gratuito e muito rápido
 - **Gupshup/UltraMsg**: Versões gratuitas disponíveis
 - **Hospedagem**: Pode usar serviços gratuitos como Heroku, Railway, etc.
 
 ## 🔧 Variáveis de Ambiente
 
 ```bash
-OPENROUTER_API_KEY=sua-chave-aqui  # Obrigatório
+GROQ_API_KEY=sua-chave-aqui  # Obrigatório
 PORT=3000                          # Opcional
 ```

@@ -125,7 +125,7 @@ O sistema gera logs detalhados para:
 3. Confirme o formato das mensagens recebidas
 
 ### Problema: IA não responde
-1. Verifique a chave da OpenRouter API
+1. Verifique a chave da Groq API
 2. Teste o endpoint `/test-ai`
 3. Verifique os logs de erro
 

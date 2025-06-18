@@ -6,7 +6,7 @@ Guia completo para fazer deploy do Spanish Tutor WhatsApp Bot no Vercel.
 
 - Conta no [Vercel](https://vercel.com)
 - Conta no [GitHub](https://github.com) (recomendado)
-- Chave da API do [OpenRouter](https://openrouter.ai)
+- Chave da API do [Groq](https://console.groq.com)
 - Configuração de pelo menos um provedor WhatsApp (UltraMsg ou Gupshup)
 
 ## 🔧 Preparação do Projeto
@@ -72,7 +72,7 @@ No painel do Vercel, configure as seguintes variáveis:
 
 ### Obrigatórias:
 ```
-OPENROUTER_API_KEY=sk-or-v1-sua_chave_aqui
+GROQ_API_KEY=sua_chave_groq_aqui
 ```
 
 ### Para UltraMsg:
@@ -177,7 +177,7 @@ REDIS_URL=redis://seu-redis-url
 ## 🆘 Troubleshooting
 
 ### Erro de Timeout
-- Verifique se a API do OpenRouter está respondendo
+- Verifique se a API do Groq está respondendo
 - Reduza o timeout das requisições HTTP
 
 ### Variáveis de Ambiente

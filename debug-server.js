@@ -105,11 +105,11 @@ try {
 
 // 7. Verificar variáveis de ambiente
 console.log('\n🔐 Verificando variáveis de ambiente:');
-const envVars = ['OPENROUTER_API_KEY', 'PORT'];
+const envVars = ['GROQ_API_KEY', 'PORT'];
 envVars.forEach(envVar => {
   const value = process.env[envVar];
   if (value) {
-    console.log(`✅ ${envVar}: ${envVar === 'OPENROUTER_API_KEY' ? value.substring(0, 10) + '...' : value}`);
+    console.log(`✅ ${envVar}: ${envVar === 'GROQ_API_KEY' ? value.substring(0, 10) + '...' : value}`);
   } else {
     console.log(`⚠️  ${envVar}: não definida`);
   }

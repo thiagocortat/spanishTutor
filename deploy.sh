@@ -23,10 +23,10 @@ if [ ! -f ".env" ]; then
   exit 1
 fi
 
-# Verificar se a chave OPENROUTER_API_KEY está configurada
-if ! grep -q "OPENROUTER_API_KEY=" .env || grep -q "OPENROUTER_API_KEY=$" .env || grep -q "OPENROUTER_API_KEY=\"\"" .env; then
-  echo -e "${RED}❌ OPENROUTER_API_KEY não configurada no arquivo .env!${NC}"
-  echo -e "${YELLOW}ℹ️  Configure sua chave de API do OpenRouter no arquivo .env.${NC}"
+# Verificar se a chave GROQ_API_KEY está configurada
+if ! grep -q "GROQ_API_KEY=" .env || grep -q "GROQ_API_KEY=$" .env || grep -q "GROQ_API_KEY=\"\"" .env; then
+  echo -e "${RED}❌ GROQ_API_KEY não configurada no arquivo .env!${NC}"
+  echo -e "${YELLOW}ℹ️  Configure sua chave de API do Groq no arquivo .env.${NC}"
   exit 1
 fi
 

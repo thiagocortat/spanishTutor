@@ -1,19 +1,19 @@
 const axios = require('axios');
 require('dotenv').config();
 
-const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
-async function testOpenRouterConnection() {
+async function testGroqConnection() {
   try {
-    console.log('🔑 Testando conexão com OpenRouter...');
-    console.log('API Key:', OPENROUTER_API_KEY ? `${OPENROUTER_API_KEY.substring(0, 20)}...` : 'NÃO ENCONTRADA');
+    console.log('🔑 Testando conexão com Groq...');
+    console.log('API Key:', GROQ_API_KEY ? `${GROQ_API_KEY.substring(0, 20)}...` : 'NÃO ENCONTRADA');
     
-    if (!OPENROUTER_API_KEY) {
-      throw new Error('OPENROUTER_API_KEY não encontrada no .env');
+    if (!GROQ_API_KEY) {
+      throw new Error('GROQ_API_KEY não encontrada no .env');
     }
     
-    const response = await axios.post('https://openrouter.ai/api/v1/chat/completions', {
-      model: 'meta-llama/llama-3.1-8b-instruct:free',
+    const response = await axios.post('https://api.groq.com/openai/v1/chat/completions', {
+      model: 'llama3-8b-8192',
       messages: [
         {
           role: 'user',
@@ -23,10 +23,8 @@ async function testOpenRouterConnection() {
       max_tokens: 50
     }, {
       headers: {
-        'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
-        'Content-Type': 'application/json',
-        'HTTP-Referer': 'https://spanish-tutor-three.vercel.app',
-        'X-Title': 'Spanish Tutor App'
+        'Authorization': `Bearer ${GROQ_API_KEY}`,
+        'Content-Type': 'application/json'
       }
     });
     
@@ -42,14 +40,14 @@ async function testOpenRouterConnection() {
     };
     
   } catch (error) {
-    console.error('❌ Erro na conexão com OpenRouter:');
+    console.error('❌ Erro na conexão com Groq:');
     
     if (error.response) {
       console.error('Status:', error.response.status);
       console.error('Dados do erro:', error.response.data);
       
       if (error.response.status === 402) {
-        console.error('💳 ERRO: Créditos insuficientes na conta OpenRouter');
+        console.error('💳 ERRO: Créditos insuficientes na conta Groq');
       } else if (error.response.status === 401) {
         console.error('🔐 ERRO: API Key inválida ou expirada');
       }
@@ -66,10 +64,10 @@ async function testOpenRouterConnection() {
 }
 
 // Executar o teste
-testOpenRouterConnection().then(result => {
+testGroqConnection().then(result => {
   if (result.success) {
     console.log('\n🎉 Teste concluído com sucesso!');
   } else {
-    console.log('\n💥 Teste falhou. Verifique os créditos da conta OpenRouter.');
+    console.log('\n💥 Teste falhou. Verifique os créditos da conta Groq.');
   }
 }).catch(console.error);

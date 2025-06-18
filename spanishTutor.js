@@ -3,12 +3,12 @@ const https = require('https');
 class SpanishTutor {
   constructor(apiKey) {
     this.apiKey = apiKey;
-    this.baseUrl = 'openrouter.ai';
-    this.model = 'openai/gpt-3.5-turbo';
+    this.baseUrl = 'api.groq.com';
+    this.model = 'llama3-8b-8192';
   }
 
   /**
-   * Gera uma resposta didática em espanhol usando OpenRouter API
+   * Gera uma resposta didática em espanhol usando Groq API
    * @param {string} userMessage - Mensagem do usuário (português ou espanhol)
    * @param {Array} conversationHistory - Histórico da conversa (opcional)
    * @returns {Promise<string>} - Resposta em espanhol do professor
@@ -49,7 +49,7 @@ Formato da resposta:
         presence_penalty: 0
       });
 
-      // Fazer requisição para OpenRouter
+      // Fazer requisição para Groq
       const response = await this.makeApiRequest(requestData);
       
       if (response.choices && response.choices[0] && response.choices[0].message) {
@@ -65,7 +65,7 @@ Formato da resposta:
   }
 
   /**
-   * Faz requisição HTTP para a API OpenRouter
+   * Faz requisição HTTP para a API Groq
    * @param {string} requestData - Dados da requisição em JSON
    * @returns {Promise<Object>} - Resposta da API
    */
@@ -73,7 +73,7 @@ Formato da resposta:
     return new Promise((resolve, reject) => {
       const options = {
         hostname: this.baseUrl,
-        path: '/api/v1/chat/completions',
+        path: '/openai/v1/chat/completions',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

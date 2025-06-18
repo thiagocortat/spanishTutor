@@ -12,8 +12,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Inicializar o tutor de espanhol
-// IMPORTANTE: Defina sua chave da API OpenRouter na variável de ambiente OPENROUTER_API_KEY
-const apiKey = process.env.OPENROUTER_API_KEY || 'sua-chave-aqui';
+// IMPORTANTE: Defina sua chave da API Groq na variável de ambiente GROQ_API_KEY
+const apiKey = process.env.GROQ_API_KEY || 'sua-chave-aqui';
 const spanishTutor = new SpanishTutor(apiKey);
 
 // Inicializar gerenciador de sessões
@@ -337,7 +337,7 @@ app.get('/status', (req, res) => {
     status: 'online',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
-    apiKeyConfigured: !!process.env.OPENROUTER_API_KEY,
+    apiKeyConfigured: !!process.env.GROQ_API_KEY,
     sessions: sessionStats,
     whatsappProviders: {
       ultramsg: {
