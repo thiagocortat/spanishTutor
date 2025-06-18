@@ -260,7 +260,7 @@ app.post('/webhook', async (req, res) => {
     }
     
     // Processar mensagem de texto com IA
-    if (messageText && messageType === 'text' && senderPhone) {
+    if (messageText && (messageType === 'text' || messageType === 'chat') && senderPhone) {
       console.log('\n🤖 Processando com IA...');
       
       // Recuperar histórico da sessão (últimas 5 mensagens)

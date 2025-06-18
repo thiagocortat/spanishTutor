@@ -10,5 +10,17 @@
     ],
     "lastActivity": "2025-06-18T01:01:40.677Z",
     "createdAt": "2025-06-18T01:01:40.677Z"
+  },
+  "5521971189552@c.us": {
+    "messages": [
+      {
+        "user": "Hola, ¿cómo estás?",
+        "assistant": "😊 ¡Hola.  Estoy bien, gracias.  ¿Y tú.",
+        "timestamp": "2025-06-18T04:12:08.864Z",
+        "level": "básico"
+      }
+    ],
+    "lastActivity": "2025-06-18T04:12:08.864Z",
+    "createdAt": "2025-06-18T04:12:08.864Z"
   }
 }

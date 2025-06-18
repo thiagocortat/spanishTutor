@@ -1,0 +1,88 @@
+✅ Sessões carregadas do arquivo: 1
+📁 SessionManager inicializado
+📂 Modo: Local (arquivo)
+📊 Sessões carregadas: 1
+📋 Endpoints de gerenciamento de sessões adicionados:
+   GET /sessions/stats - Estatísticas das sessões
+   POST /sessions/cleanup - Forçar limpeza de sessões inativas
+   GET /sessions/list - Listar todas as sessões
+   GET /sessions/:phone/history - Histórico detalhado de uma sessão
+   DELETE /sessions/:phone - Remover sessão específica
+   DELETE /sessions/all - Remover todas as sessões (requer confirmação)
+🚀 Servidor webhook rodando na porta 3000
+📱 Endpoint webhook: http://localhost:3000/webhook
+📊 Status: http://localhost:3000/status
+
+⚡ Pronto para receber mensagens do WhatsApp!
+
+2025-06-18T04:12:08.411Z - POST /webhook
+
+=== MENSAGEM RECEBIDA ===
+Timestamp: 2025-06-18T04:12:08.416Z
+Headers: {
+  "host": "localhost:3000",
+  "accept": "*/*",
+  "content-type": "application/json",
+  "user-agent": "UltraMsg-Webhook/1.0",
+  "content-length": "331"
+}
+Body completo: {
+  "event_type": "message_received",
+  "instanceId": "instance126416",
+  "data": {
+    "id": "false_5521971189552@c.us_3EB0FF54790702367270",
+    "from": "5521971189552@c.us",
+    "to": "instance126416@c.us",
+    "ack": "",
+    "type": "chat",
+    "body": "Hola, ¿cómo estás?",
+    "fromMe": false,
+    "time": 1750219928
+  }
+}
+
+--- Dados da Mensagem (UltraMsg) ---
+Telefone do remetente: 5521971189552@c.us
+Conteúdo da mensagem: Hola, ¿cómo estás?
+Tipo da mensagem: chat
+
+🤖 Processando com IA...
+📭 Nenhum histórico encontrado para: 5521971189552@c.us
+Nível detectado: básico
+
+📝 Resposta original: ¡Hola! Estoy bien, gracias. ¿Y tú? ¿Cómo has estado últimamente?
+
+[Explicação em português: "Hola" significa "olá" em português, e é uma forma de saudar. Em seguida, eu perguntei sobre a sua situação e como você tem estado recentemente.]
+
+Vocabulário:
+
+* bien: muito bem, satisfeito
+* gracias: obrigado/a (é uma forma de agradecer)
+
+Sugestão: Praticar a conversa com um amigo ou familiar, e usar essas palavras para começar uma conversa em espanhol.
+📚 Resposta formatada: 😊 ¡Hola.  Estoy bien, gracias.  ¿Y tú.
+🆕 Nova sessão criada para: 5521971189552@c.us
+💾 Sessões salvas: 2 sessões
+💬 Mensagem adicionada para 5521971189552@c.us (1/5)
+
+✅ Resposta processada e sessão atualizada
+
+🚀 Iniciando envio de mensagem WhatsApp...
+
+📤 Enviando mensagem via UltraMsg...
+URL: https://api.ultramsg.com/instance126416/messages/chat
+Destinatário: 5521971189552
+Mensagem: 😊 ¡Hola.  Estoy bien, gracias.  ¿Y tú.
+✅ Mensagem enviada via UltraMsg!
+Status HTTP: 200
+Resposta: {
+  "sent": "true",
+  "message": "ok",
+  "id": 19
+}
+
+📱 Mensagem enviada com sucesso!
+Provedor usado: ultramsg
+ID da mensagem: 19
+========================
+
