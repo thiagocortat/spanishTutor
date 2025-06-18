@@ -1,0 +1,25 @@
+# Arquivos de desenvolvimento
+node_modules
+.env.local
+.env.development
+
+# Arquivos de teste
+test-*.js
+simple-test.js
+debug-server.js
+test-curl.sh
+
+# Logs e dados temporários
+*.log
+sessions.json
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Documentação de desenvolvimento
+README_*.md
+
+# Arquivos de backup
+*.bak
+*.tmp

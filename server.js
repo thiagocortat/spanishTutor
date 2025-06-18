@@ -15,7 +15,10 @@ const apiKey = process.env.OPENROUTER_API_KEY || 'sua-chave-aqui';
 const spanishTutor = new SpanishTutor(apiKey);
 
 // Inicializar gerenciador de sessões
-const sessionManager = new SessionManager('./sessions.json');
+// Usando path para garantir compatibilidade com Vercel
+const path = require('path');
+const sessionFilePath = path.join(__dirname, 'sessions.json');
+const sessionManager = new SessionManager(sessionFilePath);
 
 // Configurações das APIs de WhatsApp (adicione no .env)
 const ULTRAMSG_TOKEN = process.env.ULTRAMSG_TOKEN;
@@ -527,13 +530,15 @@ app.get('/', (req, res) => {
   });
 });
 
-// Iniciar o servidor
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor webhook rodando na porta ${PORT}`);
-  console.log(`📱 Endpoint webhook: http://localhost:${PORT}/webhook`);
-  console.log(`📊 Status: http://localhost:${PORT}/status`);
-  console.log(`\n⚡ Pronto para receber mensagens do WhatsApp!\n`);
-});
+// Iniciar o servidor (apenas em ambiente local)
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Servidor webhook rodando na porta ${PORT}`);
+    console.log(`📱 Endpoint webhook: http://localhost:${PORT}/webhook`);
+    console.log(`📊 Status: http://localhost:${PORT}/status`);
+    console.log(`\n⚡ Pronto para receber mensagens do WhatsApp!\n`);
+  });
+}
 
 // Tratamento de finalização do processo
 process.on('SIGINT', () => {
@@ -557,3 +562,6 @@ process.on('uncaughtException', (error) => {
 process.on('unhandledRejection', (reason, promise) => {
   console.error('Promise rejeitada não tratada:', reason);
 });
+
+// Export para Vercel
+module.exports = app;

@@ -11,6 +11,21 @@ Bot inteligente de WhatsApp que funciona como professor de espanhol, usando IA (
 - 🌐 **Multilíngue**: Aceita português e espanhol, sempre responde em espanhol
 - 📱 **WhatsApp**: Compatível com Gupshup Sandbox e UltraMsg
 
+## 🚀 Como Usar
+
+### Desenvolvimento Local
+1. **Clone o repositório**
+2. **Instale as dependências**: `npm install`
+3. **Configure sua chave da API**: Edite o arquivo `.env` e adicione sua chave do OpenRouter
+4. **Execute o programa**: `npm start`
+5. **Teste**: `npm run test-ai "Hola, ¿cómo estás?"`
+
+### Deploy no Vercel
+1. **Prepare o projeto**: Já configurado com `vercel.json` e arquivos necessários
+2. **Configure variáveis de ambiente**: Use `.env.example` como referência
+3. **Deploy automático**: Execute `./deploy.sh` ou siga o [guia detalhado](README_VERCEL.md)
+4. **Configure webhook**: Use a URL do Vercel nos provedores WhatsApp
+
 ## 🚀 Instalação e Execução
 
 ### 1. Instalar dependências
