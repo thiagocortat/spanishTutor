@@ -12,17 +12,20 @@ class SessionManager {
     this.sessions = new Map();
     this.maxMessages = 5; // Máximo de 5 mensagens por sessão
     this.sessionTimeout = 24 * 60 * 60 * 1000; // 24 horas em milissegundos
+    this.isServerless = process.env.NODE_ENV === 'production';
     
-    // Carregar sessões existentes
-    this.loadSessions();
-    
-    // Configurar limpeza automática a cada hora
-    this.cleanupInterval = setInterval(() => {
-      this.cleanupInactiveSessions();
-    }, 60 * 60 * 1000); // A cada 1 hora
+    // Carregar sessões existentes (apenas em ambiente local)
+    if (!this.isServerless) {
+      this.loadSessions();
+      
+      // Configurar limpeza automática a cada hora (apenas em ambiente local)
+      this.cleanupInterval = setInterval(() => {
+        this.cleanupInactiveSessions();
+      }, 60 * 60 * 1000); // A cada 1 hora
+    }
     
     console.log('📁 SessionManager inicializado');
-    console.log(`📂 Arquivo de sessões: ${this.sessionFilePath}`);
+    console.log(`📂 Modo: ${this.isServerless ? 'Serverless (memória)' : 'Local (arquivo)'}`);
     console.log(`📊 Sessões carregadas: ${this.sessions.size}`);
   }
 
@@ -61,6 +64,12 @@ class SessionManager {
    * Salva sessões no arquivo JSON
    */
   saveSessions() {
+    // Não salvar em arquivo no ambiente serverless
+    if (this.isServerless) {
+      console.log('💾 Modo serverless: sessões mantidas apenas em memória');
+      return;
+    }
+    
     try {
       const sessionsData = {};
       
@@ -244,12 +253,22 @@ class SessionManager {
    * Finaliza o gerenciador de sessões
    */
   destroy() {
+    console.log('🔄 Finalizando SessionManager...');
+    
+    // Salvar sessões antes de finalizar (apenas em ambiente local)
+    if (!this.isServerless) {
+      this.saveSessions();
+    }
+    
+    // Limpar o intervalo de limpeza (apenas se existir)
     if (this.cleanupInterval) {
       clearInterval(this.cleanupInterval);
-      this.cleanupInterval = null;
     }
-    this.saveSessions();
-    console.log('🔚 SessionManager finalizado');
+    
+    // Limpar todas as sessões da memória
+    this.sessions.clear();
+    
+    console.log('✅ SessionManager finalizado');
   }
 }
 

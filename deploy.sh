@@ -1,55 +1,60 @@
 #!/bin/bash
 
-# Script de deploy para Vercel - Spanish Tutor WhatsApp Bot
-
-echo "🚀 Iniciando deploy para Vercel..."
+# Cores para output
+GREEN="\033[0;32m"
+RED="\033[0;31m"
+YELLOW="\033[1;33m"
+BLUE="\033[0;34m"
+NC="\033[0m" # No Color
 
 # Verificar se o Vercel CLI está instalado
 if ! command -v vercel &> /dev/null; then
-    echo "❌ Vercel CLI não encontrado. Instalando..."
-    npm install -g vercel
+  echo -e "${RED}❌ Vercel CLI não está instalado!${NC}"
+  echo -e "${YELLOW}ℹ️  Instale o Vercel CLI usando o comando:${NC}"
+  echo -e "${BLUE}   npm install -g vercel${NC}"
+  echo -e "${YELLOW}ℹ️  Após a instalação, execute este script novamente.${NC}"
+  exit 1
 fi
 
-# Verificar se existe .env
+# Verificar se o arquivo .env existe
 if [ ! -f ".env" ]; then
-    echo "⚠️  Arquivo .env não encontrado!"
-    echo "📋 Copie .env.example para .env e configure as variáveis:"
-    echo "   cp .env.example .env"
-    echo "   # Edite o .env com suas chaves de API"
-    exit 1
+  echo -e "${RED}❌ Arquivo .env não encontrado!${NC}"
+  echo -e "${YELLOW}ℹ️  Crie um arquivo .env baseado no .env.example e configure suas chaves de API.${NC}"
+  exit 1
 fi
 
-# Verificar se as variáveis essenciais estão configuradas
-if ! grep -q "OPENROUTER_API_KEY=sk-" .env; then
-    echo "❌ OPENROUTER_API_KEY não configurada no .env"
-    echo "📝 Configure sua chave do OpenRouter no arquivo .env"
-    exit 1
+# Verificar se a chave OPENROUTER_API_KEY está configurada
+if ! grep -q "OPENROUTER_API_KEY=" .env || grep -q "OPENROUTER_API_KEY=$" .env || grep -q "OPENROUTER_API_KEY=\"\"" .env; then
+  echo -e "${RED}❌ OPENROUTER_API_KEY não configurada no arquivo .env!${NC}"
+  echo -e "${YELLOW}ℹ️  Configure sua chave de API do OpenRouter no arquivo .env.${NC}"
+  exit 1
 fi
 
-echo "✅ Configurações verificadas"
+echo -e "${GREEN}✅ Configurações verificadas${NC}"
 
-# Fazer build local para verificar erros
-echo "🔨 Verificando build..."
+# Verificar build local
+echo -e "${BLUE}🔨 Verificando build...${NC}"
 npm run build
 
 if [ $? -ne 0 ]; then
-    echo "❌ Erro no build local"
-    exit 1
+  echo -e "${RED}❌ Falha no build local${NC}"
+  exit 1
 fi
 
-echo "✅ Build local OK"
+echo -e "${GREEN}✅ Build local OK${NC}"
 
 # Deploy para Vercel
-echo "🚀 Fazendo deploy..."
+echo -e "${BLUE}🚀 Fazendo deploy...${NC}"
 vercel --prod
 
-if [ $? -eq 0 ]; then
-    echo "✅ Deploy concluído com sucesso!"
-    echo "📱 Configure o webhook nos provedores WhatsApp:"
-    echo "   UltraMsg: https://seu-projeto.vercel.app/webhook"
-    echo "   Gupshup: https://seu-projeto.vercel.app/webhook"
-    echo "📊 Status: https://seu-projeto.vercel.app/status"
-else
-    echo "❌ Erro no deploy"
-    exit 1
+if [ $? -ne 0 ]; then
+  echo -e "${RED}❌ Erro no deploy${NC}"
+  exit 1
 fi
+
+echo -e "${GREEN}✅ Deploy concluído com sucesso!${NC}"
+echo -e "${YELLOW}ℹ️  Não esqueça de configurar o webhook no seu provedor WhatsApp:${NC}"
+echo -e "${BLUE}   - Para UltraMsg: https://seu-app-vercel.vercel.app/webhook/ultramsg${NC}"
+echo -e "${BLUE}   - Para Gupshup: https://seu-app-vercel.vercel.app/webhook/gupshup${NC}"
+echo -e "${YELLOW}ℹ️  Você pode verificar o status do seu bot em:${NC}"
+echo -e "${BLUE}   - https://seu-app-vercel.vercel.app/status${NC}"
